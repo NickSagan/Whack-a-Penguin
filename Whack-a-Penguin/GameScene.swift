@@ -44,6 +44,7 @@ class GameScene: SKScene {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             [weak self] in
             self?.createEnemy()
+            print("Create enemy")
         }
     }
 
@@ -53,6 +54,21 @@ class GameScene: SKScene {
         let tappedNodes = nodes(at: location)
         
         for node in tappedNodes {
+            
+            if node.name == "startAgain" {
+                numRounds = 0
+                score = 0
+                popupTime = 0.85
+                
+                childNode(withName: "startAgain")?.removeFromParent()
+                childNode(withName: "startAgain")?.removeFromParent()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    [weak self] in
+                    self?.createEnemy()
+                    print("Create enemy")
+                }
+            }
             
             guard let whackSlot = node.parent?.parent as? WhackSlot else {continue}
             if !whackSlot.isVisible { continue }
@@ -83,34 +99,45 @@ class GameScene: SKScene {
         numRounds += 1
         
         if numRounds >= 30 {
-            for slot in slots {
-                slot.hide()
-            }
+
             let gameOver = SKSpriteNode(imageNamed: "gameOver")
-            gameOver.position = CGPoint(x: frame.midX, y: frame.midX)
+            gameOver.position = CGPoint(x: frame.midX, y: frame.midY)
             gameOver.zPosition = 1
-            
+            gameOver.name = "startAgain"
             addChild(gameOver)
+            
+            let finalScoreLabel = SKLabelNode(fontNamed: "chalkduster")
+            finalScoreLabel.text = "Your score: \(score)"
+            finalScoreLabel.position = CGPoint(x: frame.midX, y: gameOver.position.y - 60)
+            finalScoreLabel.zPosition = 1
+            finalScoreLabel.name = "startAgain"
+            addChild(finalScoreLabel)
+            
+            run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
             return
+        } else {
+            popupTime *= 0.991
+            
+            slots.shuffle()
+            slots[0].show(hideTime: popupTime)
+            
+            if Int.random(in: 0...12) > 4 {slots[1].show(hideTime: popupTime)}
+            if Int.random(in: 0...12) > 8 {slots[2].show(hideTime: popupTime)}
+            if Int.random(in: 0...12) > 10 {slots[3].show(hideTime: popupTime)}
+            if Int.random(in: 0...12) > 11 {slots[4].show(hideTime: popupTime)}
+            
+            let minDelay = popupTime / 2.0
+            let maxDelay = popupTime * 2
+            let delay = Double.random(in: minDelay...maxDelay)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                [weak self] in
+                self?.createEnemy()
+            }
         }
         
-        popupTime *= 0.991
-        
-        slots.shuffle()
-        slots[0].show(hideTime: popupTime)
-        
-        if Int.random(in: 0...12) > 4 {slots[1].show(hideTime: popupTime)}
-        if Int.random(in: 0...12) > 8 {slots[2].show(hideTime: popupTime)}
-        if Int.random(in: 0...12) > 10 {slots[3].show(hideTime: popupTime)}
-        if Int.random(in: 0...12) > 11 {slots[4].show(hideTime: popupTime)}
-        
-        let minDelay = popupTime / 2.0
-        let maxDelay = popupTime * 2
-        let delay = Double.random(in: minDelay...maxDelay)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            [weak self] in
-            self?.createEnemy()
-        }
+
     }
 }

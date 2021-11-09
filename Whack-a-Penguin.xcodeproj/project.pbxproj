@@ -18,6 +18,7 @@
 		9139EF20273A60F6000091DE /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9139EF1E273A60F5000091DE /* whackBad.caf */; };
 		9139EF21273A60F6000091DE /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9139EF1F273A60F6000091DE /* whack.caf */; };
 		9139EF23273A62C9000091DE /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9139EF22273A62C9000091DE /* WhackSlot.swift */; };
+		9139EF25273A8637000091DE /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9139EF24273A8637000091DE /* SmokeParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		9139EF1E273A60F5000091DE /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
 		9139EF1F273A60F6000091DE /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
 		9139EF22273A62C9000091DE /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
+		9139EF24273A8637000091DE /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				9139EF16273A5FDC000091DE /* LaunchScreen.storyboard */,
 				9139EF1F273A60F6000091DE /* whack.caf */,
 				9139EF1E273A60F5000091DE /* whackBad.caf */,
+				9139EF24273A8637000091DE /* SmokeParticle.sks */,
 			);
 			path = "Whack-a-Penguin";
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				9139EF13273A5FD7000091DE /* Main.storyboard in Resources */,
 				9139EF0A273A5FD7000091DE /* GameScene.sks in Resources */,
 				9139EF21273A60F6000091DE /* whack.caf in Resources */,
+				9139EF25273A8637000091DE /* SmokeParticle.sks in Resources */,
 				9139EF15273A5FDC000091DE /* Assets.xcassets in Resources */,
 				9139EF18273A5FDC000091DE /* LaunchScreen.storyboard in Resources */,
 				9139EF0C273A5FD7000091DE /* Actions.sks in Resources */,
